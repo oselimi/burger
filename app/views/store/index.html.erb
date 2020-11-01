@@ -1,0 +1,8 @@
+<% @categories.each do |category| %>
+  <%= link_to "#{category.name}", store_index_path(category_id: category.id), {class: "btn btn-outline-secondary", style: "border-radius: 10px;"} %>
+<% end %>
+<br/><br>
+<div class="row no-gutters" >
+  <div class="col-sm-6 col-md-8" style="border-style:solid; border-color: #a39274; border-radius: 10px"><%= render 'store/product'%></div>
+  <div class="col-6 col-md-4"><%= render_if @cart && @cart.order_items.any?, @cart%></div>
+</div>

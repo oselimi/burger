@@ -1,0 +1,29 @@
+@import "bootstrap";
+
+.col {
+ background-color: #f1f0ee;
+
+}
+
+.txt {
+ color: black;
+ font-family: 'Times New Roman', Times, serif ;
+}
+
+.col-sm a{ 
+ text-decoration: none;
+}
+
+.txt-design a:hover {
+ background-color: transparent;
+}
+
+
+.col-sm a:hover {
+ background: transparent;
+}
+
+a:hover {
+ background: transparent;
+ text-decoration: none;
+}

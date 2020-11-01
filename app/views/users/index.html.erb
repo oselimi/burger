@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class="text-center">Staff</h1>
+<% if logged_in? %>
+  <%= link_to 'New User', new_user_path, class:"btn btn-light" %>
+<% end %>
+<br>
+<div class="container" style="padding-left:290px; ">
+  <% @users.each do |user| %>
+  <br>
+    <div class="card mb-3" style="max-width: 540px; border-radius: 25px; background-color: #dfd8c8">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <i class="fa fa-user" aria-hidden="true" style="font-size:80px; padding-left:70px; padding-top:20px "></i>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Name: <%= user.name %></h5>
+            <p class="card-text">Email: <%= user.email %></p>
+            <p class="card-text">Phone: <%= user.phone %></p>
+            <% if logged_in? %>
+              <p class="card-text"><small class="text-muted"><%= link_to 'Show', user %> | <%= link_to 'Edit', edit_user_path(user) %> | <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></small></p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

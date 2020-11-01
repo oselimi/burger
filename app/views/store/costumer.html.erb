@@ -1,0 +1,49 @@
+
+<%= link_to "online: #{@user.name}", costumer_path(user_id: @user.id), class:"btn btn-success", style:"color:white"%>
+<%= link_to "Edit Profile", edit_user_path(@user), class:"btn btn-warning" %>
+<br/><br/>
+<div class="container">
+
+ <div class="row row-cols-1 row-cols-md-3">
+   <div class="col mb-4">
+     <div class="card" style="width: 450px">
+       <div class="card-body">
+         <h5 class="card-title text-center"> Crate product </h5>
+         <%= render 'products/form', product: @product %>
+       </div>
+     </div>
+   </div>
+   <div class="col mb-4" style="width: 240px">
+    
+   </div>
+   <div class="col mb-4">
+     <div class="card" style="width: 450px">
+       <div class="card-body">
+         <h5 class="card-title  text-center">Create User</h5>
+         <%= render 'users/form', user: @usr%>
+       </div>
+     </div>
+   </div>
+   <div class="col mb-4">
+   <div class="card" style="width: 600px">
+      <div class="card-body">
+        <h5 class="card-title text-center">Create Category</h5>
+        <%= render 'categories/form', category: @category %>
+      </div>
+    </div>
+   </div>
+   <div class="col mb-4" style="width: 340px">
+   </div>
+   <div class="col mb-4">
+     <div class="card">
+       <div class="card-body">
+         <h5 class="card-title">Orders Today: <%= @orders%></h5>
+       </div>
+     </div>
+     <div class="card">
+       <div class="card-body">
+         <h5 class="card-title">Orders All: <%= @user.orders.count %></h5>
+       </div>
+     </div>
+   </div>
+</div>

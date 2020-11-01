@@ -1,0 +1,49 @@
+<% unless @cart.order_items.empty? %>  
+  <div style="background-color: #dfd8c8"> 
+  <table class="table text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm" style="padding-top:40px; padding-left:25px">
+            <h5><strong>Burger</strong></h5>
+          </div>
+          <div class="col-sm">
+            <%= image_tag("cls.png", style:"height:80px;") %>
+          </div>
+          <div class="col-sm" style="padding-top:40px; padding-right:">
+            <h5><strong>Classic</strong></h5>
+          </div>
+        </div>
+      </div>
+      <br>
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Product </th>
+          <th scope="col">Price</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @cart.order_items.each do |item| %>
+        <tr>
+          <th scope="row"></th>
+          <td class="text-left"><%= item.product.name %></td>
+          <td><%= item.product.price %>mkd</td>
+          <td><%= item.quantity %> </td>
+          <td><%= item.total_price %> </td>
+        </tr>
+      <% end%>
+      </tbody>
+    </table>
+    <h4 class="text-center"><strong>Total Price: <%= @cart.total_price %></strong></h4>
+    <hr>
+    <div class="container">
+    <% unless local_assigns[:show]%>
+      <div class="row">
+        <div class="col-md-4"><%= button_to "Checkout", order_food_path, method: :get, class:"btn btn-info" %></div>
+        <div class="col-md-4 offset-md-4"><%= button_to "Empty", @cart, method: :delete, data: {confirm: "Are you sure"}, class:"btn btn-danger" %></div>
+      </div>
+    </div>
+    <% end %>
+<% end %>

@@ -1,0 +1,33 @@
+<h1 class="text-center"> Orders per year </h1><br>
+ <div class="container" style="width: 500px; background-color: #dfd8c8; border-radius: 10px">
+  <%= link_to balance_path do %>
+    <i class="fa fa-arrow-left" aria-hidden="true" style="font-size:20px" ></i>
+  <% end %>
+  <table class="table">
+   <thead>
+     <tr>
+       <th scope="col">#</th>
+       <th scope="col">Date</th>
+       <th scope="col">Time</th>
+       <th scope="col">Order NO</th>
+       <th scope="col">Price</th>
+       <th scope="col">View</th>
+     </tr>
+   </thead>
+   <tbody>
+     <% @orders.each do |item| %>
+     <% if item.finish.present? %>
+     <tr>
+       <th scope="row"></th>
+       <td><%= item.date.strftime("%b-%d-%Y") %></td>
+       <td><%= item.date.strftime("%l:%M%P") %></td>
+       <td><%= item.no %></td>
+       <td><%= item.total_price %></td>
+       <td><%= link_to "view", view_path(order_id: item.id)%></td>
+     </tr>
+     <% end %>
+     
+    <% end %>
+   </tbody>
+ </table>
+</div>

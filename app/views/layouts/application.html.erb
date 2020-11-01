@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OnlineBurger</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="col">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm " style="padding-top:80px; padding-left:60px; padding-right:90px;">
+          &emsp; &emsp;
+          <%= link_to home_path do%>
+            <i class="fa fa-home text-center" aria-hidden="true"  style="font-size:35px;"><h5>Home</h5></i>
+          <% end %>
+          &emsp; &emsp;
+          <%= link_to contact_path do%>
+            <i class="fa fa-info-circle text-center" aria-hidden="true" style="font-size:35px;"><h5>Contact</h5></i>
+          <% end %>
+           &emsp; &emsp;
+          <%= link_to staff_path do%>
+            <i class="fa fa-user-circle text-center" aria-hidden="true" style="font-size:32px;"><h5>Staff</h5></i>
+          <% end %>
+        </div>
+        <div class="col-sm">
+          <%= link_to store_index_path  do%>
+            <%= image_tag("cls.png", style:"height:180px;") %>
+          <% end %>
+        </div>
+       
+        <div class="col-sm" style="padding-top:80px; padding-left:0px; padding-right: 35px;">
+        <% if logged_in? %>
+          &emsp; &emsp;
+          <%= link_to delivery_path do %>
+            <i class="fa fa-cart-arrow-down text-center" aria-hidden="true" style="font-size:35px;"><h5>Delivery</h5></i>
+          <% end %>
+         &emsp; &emsp;
+          <%= link_to balance_path do %>
+            <i class="fa fa-bar-chart text-center" aria-hidden="true" style="font-size:35px;"><h5>Balance</h5></i>
+          <% end %>
+          &emsp; &emsp;
+          <%= link_to logout_path, method: :delete do %>
+            <i class="fa fa-sign-out text-center" aria-hidden="true" style="font-size:35px;"><h5>Logout</h5></i>
+          <% end %>
+        <% else %>
+          <%= link_to login_path do %>
+            <i class="fa fa-sign-in text-center" aria-hidden="true" style="font-size:35px;"><h5>Login</h5></i>
+          <% end %>
+        <% end %>
+        </div>
+      </div>
+    </div>
+      <hr>
+    <%= yield %>
+  </body>
+</html>
