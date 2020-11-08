@@ -18,6 +18,8 @@ class Cart < ApplicationRecord
     current.save
   elsif current.quantity == 1
     current.destroy
+  else
+    redirect_to root_path
   end
   current
  end

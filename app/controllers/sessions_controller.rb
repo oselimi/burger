@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email])
     if user&.authenticate(params[:session][:password])
       log_in(user)
-      redirect_to delivery_path
+      redirect_to balance_path
     else
       render :new
     end
@@ -14,6 +14,6 @@ class SessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to store_index_path
+    redirect_to root_path
   end
 end

@@ -1,7 +1,7 @@
 class StoreController < ApplicationController
   include CurrentCart
   before_action :set_cart
-
+  before_action :logged_in_user
   def index
     if params[:category_id].present?
       @products = Product.where(category_id: params[:category_id])
@@ -22,40 +22,21 @@ class StoreController < ApplicationController
   def reduction
     product = Product.find(params[:product_id])
     @cart.reduction_product(product)
-    redirect_to store_index_path(category_id: params[:category_id])
+    redirect_to root_path(category_id: params[:category_id])
   end
-
-  def all
-    @user = User.first
-  end
-
-  def contact; end
-  def home; end
 
   def balance
     @order = Order.count
     @orders = Order.where(date: Time.zone.now.all_day)
+    @statistics = Statistic.all
+    @statistic = Statistic.first
+    @sts = Statistic.new
+    @user = User.find_by(params[:user_id])
   end
 
-  def week
-    @orders = Order.where(date: Time.zone.now.all_week)
-  end
-
-  def month
-    @orders = Order.where(date: Time.zone.now.all_month)
-  end
-
-  def year
-    @orders = Order.where(date: Time.zone.now.all_year)
-  end
 
   def order_food
-    @order = Order.new(no: count)
-  end
-
-  def staff
-    @users = User.all
-    @user = User.find_by(params[:user_id])
+    @order = Order.new(no: count, date: DateTime.current)
   end
 
   def costumer

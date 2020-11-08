@@ -1,39 +1,56 @@
-<div class="container">
-  <%= link_to 'All', all_path, class: "btn btn-light"%>
-  <%= link_to 'Week', week_path, class: "btn btn-light"%>
-  <%= link_to 'Month', month_path, class: "btn btn-light"%>
-  <%= link_to 'Year', year_path, class: "btn btn-light"%>
-  <button type="button" class="btn btn-dark pull-right">
-    Total Orders: <span class="badge badge-light" style="background-color:red;"><%= @order %></span>
-  </button>
+<div class="flex justify-between px-5 py-2 border-b-2 items-center ">
+  <div>
+    <span class="text-base">
+      <%= link_to  costumer_path(user_id: params[:user_id]), class:"hover:bg-transparent hover:text-indigo-500" do %>
+        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path></svg>
+      <% end %>
+    </span>
+  </div>
+  <div> 
+    <%= form_with(model: @sts, local: true) do |form| %> 
+    <div class="font-semibold text-base ">
+      <%= form.submit "Create New Day", class:"hover:text-indigo-500"%>
+    </div>
+  <% end %>
+  </div>
 </div>
-
-<h1 class="text-center"> Today </h1><br>
- <div class="container" style="width: 500px; background-color: #dfd8c8; border-radius: 10px">
-  <table class="table">
-   <thead>
-     <tr>
-       <th scope="col"></th>
-       <th scope="col">Date</th>
-       <th scope="col">Time</th>
-       <th scope="col">Order NO</th>
-       <th scope="col">Price</th>
-       <th scope="col">View</th>
-     </tr>
-   </thead>
-   <tbody>
-     <% @orders.each do |item| %>
-     <% if item.finish.present? %>
-     <tr>
-       <th scope="row"></th>
-       <td><%= item.date.strftime("%b-%d-%Y") %></td>
-       <td><%= item.date.date.strftime("%l:%M%P") %></td>
-       <td><%= item.no %></td>
-       <td><%= item.total_price %></td>
-       <td><%= link_to "view", view_path(order_id: item.id)%></td>
-     </tr>
-     <% end %>
-    <% end %>
-   </tbody>
- </table>
+<div class="grid">
+  <div class="px-12 py-5"> 
+    <div class="bg-white flex w-full gap-4 px-4 py-4 " style="height:200px">
+      <div class="w-1/3  h-auto text-center py-2 rounded shadow-2xl">
+        <span class="text-base font-semibold"> Today </span>
+        <div class="pt-5">
+          <span class="font-semibold text-6xl"><%= @statistic.total_price %><span class="text-sm">mkd</span>
+          </span>
+        </div>
+      </div>
+      <div class="w-1/3  h-auto text-center py-2 rounded shadow-2xl">
+      <span class="text-base font-semibold "> All </span>
+        <div class="py-5">
+          <span class="font-semibold text-6xl"><%= @user.total_price%><span class="text-sm">mkd</span> </span>
+        </div>
+      </div>
+      <div class="w-1/3 h-auto text-center py-2 rounded shadow-2xl">
+        <span class="text-base font-semibold"> Total Orders </span>
+        <div class="pt-5 pl-5">
+          <span class="font-semibold text-6xl"><%= @order %><span class="text-sm">orders</span></span>
+        </div>
+      </div>
+    </div>
+  <div>
+    <div class="bg-white px-4 py-4 my-5 flex gap-4">
+      <div class="bg-gray-400 w-2/3 mx-2 my-2 h-auto rounded shadow-2xl">
+        <div class="text-center border-b border-black py-2">
+          <span class="text-base  font-semibold">Today: <%=@statistic.created_at.strftime("%b-%d-%Y")%></span>
+        </div>
+          <%= render 'store/today'%>
+      </div>
+      <div class=" bg-gray-300 w-1/3 h-auto text-center py-4 rounded shadow-2xl ">
+        <span class="text-base font-semibold">All Days</span>
+        <div class="pl-24 py-4 border-t-2 border-black">
+          <%= render 'store/all_days'%>
+        </div>
+      </div>
+    </div>
 </div>
+  

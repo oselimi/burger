@@ -1,6 +1,6 @@
-<div class="container">
- <div class="row">
-  <div class="col-sm-8" style="background-color: #a39274"><%= render 'orders/form', order: @order %></div>
-  <div class="col-sm-4"><%= render 'carts/cart', show: true %></div>
- </div>
+<div class="mx-64 my-5" style="background-color: #a39274">
+ <div class="px-5 py-5 w-2/3 ml-32">  <%= render 'carts/cart', show: true %></div>
+ <div> <%= render 'orders/form', order: @order %></div>
 </div>
+ 
+

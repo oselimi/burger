@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
     @product.image.attach(params[:product][:image])
     respond_to do |format|
       if @product.save
-        format.html { redirect_to store_index_path, notice: 'Product was successfully created.' }
+        format.html { redirect_to  costumer_path(user_id: params[:user_id]), notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
       else
         puts @product.errors.full_messages

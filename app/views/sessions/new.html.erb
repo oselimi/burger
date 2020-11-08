@@ -1,20 +1,21 @@
-
-<h1 class="text-center"><Strong>Login Costumer</strong></h1>
-<p class="text-center">Find me in app/views/sessions/new.html.erb</p>
-<br>
-<%= form_with url: login_path, scope: :session, local: true do |form| %>
- <div class="container" style="width:500px; background-color: #C6C6C6;">
-  <div class="form-group">
-    <%= form.label :email %>
-    <%= form.email_field :email, class:"form-control"  %>
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-  </div>
+<div class="my-20">
+  <h1 class="text-center"><Strong>Login Costumer</strong></h1>
+  <p class="text-center">Find me in app/views/sessions/new.html.erb</p>
   <br>
-  <div class="form-group">
-    <%= form.label :password %>
-    <%= form.password_field :password, class:"form-control" %>
-  </div>
-  <br>
-   <%= form.submit 'Login', class:"btn btn-dark center" %>
-   <%= link_to "Back", home_path, class:"btn btn-light center" %>
-<% end %>
+  <%= form_with url: login_path, scope: :session, local: true do |form| %>
+    <div class="container" style="width:500px; background-color: #C6C6C6;">
+    <div class="form-group">
+      <%= form.label :email %>
+      <%= form.email_field :email, class:"form-control"  %>
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <br>
+    <div class="form-group">
+      <%= form.label :password %>
+      <%= form.password_field :password, class:"form-control" %>
+    </div>
+    <br>
+    <%= form.submit 'Login', class:"btn btn-dark center" %>
+    <%= link_to "Back", root_path, class:"btn btn-light center" %>
+  <% end %>
+</div>

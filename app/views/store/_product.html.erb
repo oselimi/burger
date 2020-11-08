@@ -1,24 +1,22 @@
-<br/>
-<div class="container">
-  <div class="row row-cols-1   row-cols-md-2">
-    <% @products.each do |product| %>
-      <div class="col mb-4">
-        <div class="card mb-3 text-right" style="max-width: 550px;">
-          <div class="row no-gutters">
-            <div class="col-md-4">
-              <%= image_tag product.display_image if product.image.attached? %>
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title"><%= product.name %></h5>
-                <p class="card-text"><%= product.price %></p>
-                <p class="card-text"><%= button_to "Add to Card", order_items_path(product_id: product.id, category_id: product.category.id), class:"btn btn-success btn-sm", remote: true %></p>
-              </div>
-            </div>
-          </div>
+<div class="row row-cols-1 pl- py-2 row-cols-md-5 gap-4">
+  <% @products.each do |product| %>
+     <%= button_to order_items_path(product_id: product.id, category_id: product.category.id), class:"hover:bg-gray-200", remote: true do %> 
+      <div class="rounded overflow-hidden  shadow-lg">
+        <div class="w-full">
+          <%= image_tag product.display_image if product.image.attached? %>
+        </div>
+        <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2"><%= product.price %><span class="text-sm">mkd</span></div>
+          <%= product.name %>
+        </div>
+        <div class="px-6 pt-4 pb-2">
+          <span class="inline-block hover:bg-black rounded-full bg-red-300 ">
+            <%= link_to reduction_path(product_id: product.id, category_id: product.category.id), method: :post, remote: true do %>
+              <svg class="w-8 h-8 px-1 py-1 text-red-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg>
+            <% end %>
+          </span>
         </div>
       </div>
     <% end %>
-  </div>
+  <% end %>
 </div>
-

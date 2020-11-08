@@ -2,42 +2,19 @@
   <%= form_with(model: order, local: true) do |form| %>
     <div class="form-row"> 
       <div class="form-group col-md-6">
-        <%= form.label :no, 'Order No' %>
-        <%= form.number_field :no, class:"form-control"%>
+        <%= form.hidden_field :no, class:"form-control"%>
       </div>
       <br>
       <div class="form-group">
-        <%= form.label :date %>
-        <%= form.datetime_select :date, class:"form-control" %>
+        <%= form.hidden_field :date, class:"form-control" %>
+      </div>
+      <div class="form-group hidden">
+        <%= form.collection_select :statistic_id, Statistic.all, :id, :created_at%>
       </div>
     </div>
      <br>
-    <div class="form-group">
-      <%= form.label :name %>
-      <%= form.text_field :name, class:"form-control", placeholder: "Full Name" %>
-    </div>
-     <br>
-    <div class="form-group">
-      <%= form.label :address %>
-      <%= form.text_field :address, class: "form-control", placeholder: "Apartment, studio, or floor" %>
-    </div>
-    <div class="form-row">
-     <br>
-      <div class="form-group col-md-6">
-        <%= form.label :telephone %>
-        <%= form.text_field :telephone, class:"form-control" %>
-      </div>
-      <br>
-      <div class="form-group">
-        <%= form.label :comment %>
-        <%= form.text_area :comment, class:"form-control" %>
-      </div>
-    </div>
-    <div class="form-group col-md-6">
-        <%= form.hidden_field :user_id, class:"form-control" %>
-      </div>
-     <br>
-    <%= form.submit 'Order Products', class:"btn btn-success btn-lg btn-block" %>
+    
+    <%= form.submit 'Close Day', class:"btn btn-success btn-lg btn-block" %>
      <%= link_to "Back", :back %>
   <% end %>
 </div>

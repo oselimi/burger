@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in_user, expect: [:show]
+  before_action :logged_in_user
 
   # GET /categories
   # GET /categories.json
@@ -29,7 +29,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to store_index_path, notice: 'Category was successfully created.' }
+        format.html { redirect_to costumer_path(user_id: params[:user_id]), notice: 'Category was successfully created.' }
         format.json { render :show, status: :created, location: @category }
       else
         format.html { render :new }

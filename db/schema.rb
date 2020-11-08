@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_14_115225) do
+ActiveRecord::Schema.define(version: 2020_11_03_173438) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -45,6 +45,20 @@ ActiveRecord::Schema.define(version: 2020_10_14_115225) do
     t.integer "product_id"
   end
 
+  create_table "costs", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.text "description"
+    t.float "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_costs_on_user_id"
+  end
+
+  create_table "days", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "order_items", force: :cascade do |t|
     t.float "total"
     t.integer "quantity", default: 1
@@ -70,6 +84,8 @@ ActiveRecord::Schema.define(version: 2020_10_14_115225) do
     t.boolean "finish", default: false
     t.text "comment"
     t.integer "user_id"
+    t.integer "statistic_id"
+    t.index ["statistic_id"], name: "index_orders_on_statistic_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -82,6 +98,11 @@ ActiveRecord::Schema.define(version: 2020_10_14_115225) do
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 
+  create_table "statistics", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -92,9 +113,11 @@ ActiveRecord::Schema.define(version: 2020_10_14_115225) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "costs", "users"
   add_foreign_key "order_items", "carts"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
+  add_foreign_key "orders", "statistics"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
 end

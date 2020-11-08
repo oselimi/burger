@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in_user, except: [:index]
+  before_action :logged_in_user
   # GET /users
   # GET /users.json
   def index
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         log_in(@user)
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to  costumer_path(user_id: params[:user_id]), notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }

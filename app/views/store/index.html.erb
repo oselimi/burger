@@ -1,8 +1,13 @@
-<% @categories.each do |category| %>
-  <%= link_to "#{category.name}", store_index_path(category_id: category.id), {class: "btn btn-outline-secondary", style: "border-radius: 10px;"} %>
-<% end %>
-<br/><br>
-<div class="row no-gutters" >
-  <div class="col-sm-6 col-md-8" style="border-style:solid; border-color: #a39274; border-radius: 10px"><%= render 'store/product'%></div>
-  <div class="col-6 col-md-4"><%= render_if @cart && @cart.order_items.any?, @cart%></div>
+<div class="text-center my-2"> 
+  <% @categories.each do |category| %>
+    <%= link_to "#{category.name}", root_path(category_id: category.id), {class: "btn btn-outline-secondary", style: "border-radius: 10px;"} %>
+  <% end %>
 </div>
+ <div class="flex w-full">
+  <div class="w-2/5 overflow-auto px-8 py-2" style="height:600px;">
+    <%= render_if @cart && @cart.order_items.any?, @cart%>
+  </div>
+  <div class="w-3/4">
+    <%= render 'store/product'%>  
+  </div>
+ </div>

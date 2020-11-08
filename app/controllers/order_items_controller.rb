@@ -2,7 +2,7 @@ class OrderItemsController < ApplicationController
   include CurrentCart
   before_action :set_order_item, only: [:show, :edit, :update, :destroy]
   before_action :set_cart, only: [:create, :reduction]
-  before_action :logged_in_user, except: [:new, :create]
+  before_action :logged_in_user
   # GET /order_items
   # GET /order_items.json
   def index
@@ -32,10 +32,10 @@ class OrderItemsController < ApplicationController
     respond_to do |format|
       if @order_item.save
         if params[:category_id].present?
-          format.html { redirect_to store_index_path(category_id: params[:category_id]), notice: 'Order item was successfully created.' }
+          format.html { redirect_to root_path(category_id: params[:category_id]), notice: 'Order item was successfully created.' }
           format.json { render :show, status: :created, location: @order_item }
         else
-          format.html { redirect_to store_index_path, notice: 'Order item was successfully created.' }
+          format.html { redirect_to root_path, notice: 'Order item was successfully created.' }
           format.json { render :show, status: :created, location: @order_item }
         end
       else

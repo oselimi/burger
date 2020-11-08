@@ -1,0 +1,10 @@
+<table class="text-center">
+ <tbody>
+   <% @statistics.each do |statistic| %>
+     <tr class="border-b">
+      <td class="font-semibold text-base py-2"><%= statistic.created_at.strftime("%b-%d-%Y") %></td>
+      <td class="px-2"><%= link_to 'Show', statistic, class:"hover:bg-transparent hover:text-black" %></td>
+     </tr>
+   <% end %>
+ </tbody>
+</table>

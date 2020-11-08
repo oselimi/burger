@@ -1,6 +1,6 @@
-class CartsController < ApplicationController
+class CartsController < ApplicationController  
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in_user, only: [:new, :create]
+  before_action :logged_in_user
 
   # GET /carts
   # GET /carts.json
@@ -58,7 +58,7 @@ class CartsController < ApplicationController
     @cart.destroy if @cart.id == session[:cart_id]
     session[:cart_id] = nil
     respond_to do |format|
-      format.html { redirect_to store_index_url, notice: 'Cart was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'Cart was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

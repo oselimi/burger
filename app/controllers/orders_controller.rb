@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   include CurrentCart
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   before_action :set_cart, only: [:new, :create ]
-  before_action :logged_in_user, except: [:new, :create]
+  before_action :logged_in_user
   # GET /orders
   # GET /orders.json
   def index
@@ -28,12 +28,12 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.add_order_item(@cart)
-    @order.user = User.first
+    @order.user = current_user
     respond_to do |format|
       if @order.save
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
-        format.html { redirect_to store_index_path, notice: 'Order was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
         puts @order.errors.full_messages
@@ -79,6 +79,6 @@ class OrdersController < ApplicationController
     end
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:no, :date, :name, :address, :telephone, :finish, :user_id, :comment,:pay_type)
+      params.require(:order).permit(:no, :date, :name, :address, :telephone, :finish, :user_id, :comment, :pay_type, :statistic_id)
     end
 end
