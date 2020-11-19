@@ -1,4 +1,4 @@
-<div class="bg-white py-3 rounded">
+<div class="py-3 rounded">
 <% unless @cart.order_items.empty? %>  
   <table class="table-auto">
     <thead>
@@ -21,7 +21,7 @@
     </tbody>
   </table>
   <div class="border-t pt-12 text-2xl">
-    <h4 class="text-center pr-6 font-bold"><span>Total Price: <%= @cart.total_price %></span></h4>
+    <h4 class="text-center pr-6 font-bold"><span>Total Price: <%= @cart.total_price %>mkd</span></h4>
     <div class="flex justify-between px-8 my-2 py-4 border-t">
       <% unless local_assigns[:show]%>
         <div class="bg-red-400 rounded-full hover:bg-gray-500">

@@ -1,6 +1,6 @@
 <div class="row row-cols-1 pl- py-2 row-cols-md-5 gap-4">
   <% @products.each do |product| %>
-     <%= button_to order_items_path(product_id: product.id, category_id: product.category.id), class:"hover:bg-gray-200", remote: true do %> 
+     <%= button_to order_items_path(product_id: product.id, category_id: product.category.id), remote: true do %> 
       <div class="rounded overflow-hidden  shadow-lg">
         <div class="w-full">
           <%= image_tag product.display_image if product.image.attached? %>

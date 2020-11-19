@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_03_173438) do
+ActiveRecord::Schema.define(version: 2020_11_02_150650) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -45,20 +45,6 @@ ActiveRecord::Schema.define(version: 2020_11_03_173438) do
     t.integer "product_id"
   end
 
-  create_table "costs", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.text "description"
-    t.float "price"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_costs_on_user_id"
-  end
-
-  create_table "days", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "order_items", force: :cascade do |t|
     t.float "total"
     t.integer "quantity", default: 1
@@ -75,14 +61,8 @@ ActiveRecord::Schema.define(version: 2020_11_03_173438) do
   create_table "orders", force: :cascade do |t|
     t.integer "no"
     t.datetime "date"
-    t.string "name"
-    t.string "address"
-    t.string "telephone"
-    t.string "pay_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "finish", default: false
-    t.text "comment"
     t.integer "user_id"
     t.integer "statistic_id"
     t.index ["statistic_id"], name: "index_orders_on_statistic_id"
@@ -113,7 +93,6 @@ ActiveRecord::Schema.define(version: 2020_11_03_173438) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "costs", "users"
   add_foreign_key "order_items", "carts"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"

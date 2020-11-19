@@ -9,6 +9,7 @@ class StoreController < ApplicationController
       @products = Product.all
     end
     @categories = Category.all
+
   end
 
   def delivery
@@ -27,13 +28,12 @@ class StoreController < ApplicationController
 
   def balance
     @order = Order.count
-    @orders = Order.where(date: Time.zone.now.all_day)
+    @orders = Order.all
     @statistics = Statistic.all
     @statistic = Statistic.first
     @sts = Statistic.new
     @user = User.find_by(params[:user_id])
   end
-
 
   def order_food
     @order = Order.new(no: count, date: DateTime.current)
@@ -44,7 +44,7 @@ class StoreController < ApplicationController
     @category = Category.new
     @usr = User.new
     @user = User.find_by(params[:user_id])
-    @orders = Order.where(date: Time.zone.now.all_day).count
+    @orders = Order.all.count
   end
 
   private

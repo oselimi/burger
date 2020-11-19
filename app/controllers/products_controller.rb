@@ -25,7 +25,6 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
-    @product.image.attach(params[:product][:image])
     respond_to do |format|
       if @product.save
         format.html { redirect_to  costumer_path(user_id: params[:user_id]), notice: 'Product was successfully created.' }

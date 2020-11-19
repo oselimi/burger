@@ -1,8 +1,9 @@
 <div class="text-center my-2"> 
   <% @categories.each do |category| %>
-    <%= link_to "#{category.name}", root_path(category_id: category.id), {class: "btn btn-outline-secondary", style: "border-radius: 10px;"} %>
+    <%= link_to "#{category.name}", root_path(category_id: category.id), {class: "bg-gray-400 dark:bg-gray-300 dark:text-gray-700 text-base text-gray-200 px-2 py-2 mx-2 hover:text-red-500 rounded-b-xl"} %>
   <% end %>
 </div>
+
  <div class="flex w-full">
   <div class="w-2/5 overflow-auto px-8 py-2" style="height:600px;">
     <%= render_if @cart && @cart.order_items.any?, @cart%>
@@ -11,3 +12,6 @@
     <%= render 'store/product'%>  
   </div>
  </div>
+
+
+
