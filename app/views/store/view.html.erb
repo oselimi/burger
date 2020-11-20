@@ -1,7 +1,4 @@
-<h1>Order no: <%= @order.no%></h1>
-<hr>
-
-<div class="card">
+<div class="card mx-5 my-5">
   <div class="card-header">
     <h6 class="card-title">Date: <%= @order.date%></h6>
   </div>
@@ -10,6 +7,7 @@
   <thead>
     <tr>
       <th scope="col">#</th>
+       <th scope="col">User</th>
       <th scope="col">Quantity</th>
       <th scope="col">Product</th>
       <th scope="col">Price</th>
@@ -20,6 +18,7 @@
   <% @order.order_items.each do |item| %>
     <tr>
       <th scope="row"></th>
+      <td><%= @order.user.name %></td>
       <td><strong><%= item.quantity %></strong></td>
       <td><%= item.product.name %></td>
       <td><%= item.product.price %></td>
@@ -28,18 +27,6 @@
 <% end %>
   </tbody>
 </table>
-<div class="card-body">
-  <h6>Comment: <strong><%= @order.comment %></strong></h6>
-</div>
-
-  <%= form_with  model: @order, local: true do |form| %>
-  <div class="card-body">
-      <%= form.label :finish, 'When order is ready please check', style:"font-size: 18px"%>
-      <%= form.check_box :finish , style:"width: 40px; height: 40px;" %>
-  </div>
-    <div class="card-footer">
-      <%= form.submit 'Confirm', class: "btn btn-success" %>
-  <% end %>
     <%= link_to 'Back', :back, class:'btn btn-danger'%>
     <h4 style="float:right"><strong>Total price: <%= @order.total_price %>mkd</h4></strong>
    </div>

@@ -20,10 +20,6 @@
       <tr>
         <td><%= order.no %></td>
         <td><%= order.date %></td>
-        <td><%= order.name %></td>
-        <td><%= order.address %></td>
-        <td><%= order.telephone %></td>
-        <td><%= order.pay_type %></td>
         <td><% order.order_items.each do |item| %></td>
           <%= item.quantity %>
         <% end %>
